@@ -6,7 +6,7 @@ Los participantes se registran en los talleres y pueden acceder a recursos pedag
 
 Para efectos de control institucional y de transparencia, toda la información debe persistirse en una base de datos relacional y además permitir la carga inicial de datos mediante archivos CSV. El sistema debe respetar una arquitectura basada en el patrón arquitectónico MVC, permitir consultas por nombre de participante, tipo de taller, nivel de avance y generar reportes organizados en consola. Se espera que el sistema aplique correctamente los pilares fundamentales de la Programación Orientada a Objetos: abstracción, encapsulamiento, herencia y polimorfismo, así como el uso adecuado de arreglos dinámicos, manejo de excepciones y principios SOLID para garantizar su escalabilidad.
 
-Requerimientos funcionales:
+### Requerimientos funcionales:
 
 1.	Permitir el registro y gestión de múltiples talleres artísticos, considerando tipo de taller, duración, materiales necesarios y nivel de dificultad.
 2.	Registrar participantes y su asignación a talleres disponibles, considerando restricciones de edad y cupo.
