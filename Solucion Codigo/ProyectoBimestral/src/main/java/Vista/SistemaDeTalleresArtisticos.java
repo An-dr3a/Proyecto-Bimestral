@@ -27,8 +27,8 @@ public class SistemaDeTalleresArtisticos {
         gestionar.inscribirParticipantes("Pintura", participante2);
 
         gestionar.reporteFinal();
-        gestionar.guardarDatosDeTalleresCSV("talleres.csv");
-        gestionar.guardarDatosDeFacilitadoresCSV("facilitadores.csv");
-        gestionar.guardarDatosDeParticipantesCSV("participantes.csv");
+        gestionar.guardarDatosDeTalleresCSV("Talleres.csv");
+        gestionar.guardarDatosDeFacilitadoresCSV("Facilitadores.csv");
+        gestionar.guardarDatosDeParticipantesCSV("Participantes.csv");
     }
 }
