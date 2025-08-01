@@ -1,7 +1,8 @@
 package Modelo;
+
 import java.io.Serializable;
 
-public class Persona implements Serializable{
+public abstract class Persona implements Serializable {
 
     public String nombre;
     public String cedula;
@@ -13,9 +14,13 @@ public class Persona implements Serializable{
         this.edad = edad;
     }
 
+    public abstract String tipoCSV();
+
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", cedula=" + cedula + '}';
+        return "Nombre: " + nombre
+                + "\n\t\tCedula: " + cedula
+                + "\n\t\tEdad; " + edad;
     }
 
 }

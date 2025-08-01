@@ -11,7 +11,13 @@ public class Persona_Facilitador extends Persona {
 
     @Override
     public String toString() {
-        return "Persona_Facilitador{" + "especialidad=" + especialidad + '}';
+        return super.toString() + "\n\t\tEspecialidad: " + especialidad;
     }
 
+    @Override
+    public String tipoCSV() {
+
+        return String.format("%s;%s;%d;%s", nombre, cedula, edad, especialidad);
+
+    }
 }

@@ -15,7 +15,14 @@ public class Persona_Participante extends Persona {
 
     @Override
     public String toString() {
-        return "Persona_Participante{" + "edad=" + edad + ", nivel=" + nivel + '}';
+        return super.toString() + "\n\t\tNivel: " + nivel;
+    }
+
+    @Override
+    public String tipoCSV() {
+
+        return String.format("%s;%s;%d;%s", nombre, cedula, edad, nivel);
+
     }
 
 }

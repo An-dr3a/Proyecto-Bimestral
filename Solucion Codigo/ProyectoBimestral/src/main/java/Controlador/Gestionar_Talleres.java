@@ -7,9 +7,13 @@ import Modelo.*;
 public class Gestionar_Talleres {
 
     public ArrayList<Sistema_Taller> talleres;
+    public ArrayList<Persona_Facilitador> facilitadores;
+    public ArrayList<Persona_Participante> participantes;
 
     public Gestionar_Talleres() {
         this.talleres = new ArrayList<>();
+        this.facilitadores = new ArrayList<>();
+        this.participantes = new ArrayList<>();
     }
 
     public void registrarTalleres(Sistema_Taller tall) {
@@ -20,42 +24,61 @@ public class Gestionar_Talleres {
         for (Sistema_Taller t : talleres) {
             if (t.toString().contains(nombreTaller)) {
                 t.asignarFacilitador(facilitador);
+                if (!facilitadores.contains(facilitador)) {
+                    facilitadores.add(facilitador);
+                }
             }
         }
     }
 
     public void inscribirParticipantes(String nombreTaller, Persona_Participante participante) {
         for (Sistema_Taller tal : talleres) {
-            if (tal.toString().contains(nombreTaller)) {
-                if (!tal.aregrarParticipante(participante)) {
+            if (tal.nombre.contains(nombreTaller)) {
+                if (tal.agregrarParticipante(participante)) {
+                    participantes.add(participante);
+                } else {
                     System.out.println("Cupo lleno en el taller " + nombreTaller);
                 }
             }
         }
     }
 
-    public void guardarDatos(String archivo) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(archivo))) {
-            out.writeObject(talleres);
+    public void guardarDatosDeTalleresCSV(String archivo) {
+        try (Formatter formatter = new Formatter(new File(archivo))) {
+            formatter.format("NOMBRE;TIPO;DURACION;MATERIALES;NIVEL;CUPO;CEDULA_FACILITADOR\n");
+            for (Sistema_Taller taller : talleres) {
+                formatter.format("%s\n", taller.crearArchivoCSV());
+            }
         } catch (IOException e) {
         }
     }
 
-    public void subirDatos(String archivo) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(archivo))) {
-            talleres = (ArrayList<Sistema_Taller>) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+    public void guardarDatosDeFacilitadoresCSV(String archivo) {
+        try (Formatter formatter = new Formatter(new File(archivo))) {
+            formatter.format("NOMBRE;CEDULA;EDAD;ESPECIALIDAD\n");
+            for (Persona_Facilitador fac : facilitadores) {
+                formatter.format("%s\n", fac.tipoCSV());
+            }
+        } catch (IOException e) {
+        }
+    }
+
+    public void guardarDatosDeParticipantesCSV(String archivo) {
+        try (Formatter formatter = new Formatter(new File(archivo))) {
+            formatter.format("NOMBRE;CEDULA;EDAD;NIVEL\n");
+            for (Persona_Participante par : participantes) {
+                formatter.format("%s\n", par.tipoCSV());
+            }
+        } catch (IOException e) {
         }
     }
 
     public void reporteFinal() {
         for (Sistema_Taller t : talleres) {
-            System.out.println("\nTaller" + t
-                    + "\nFacilitador: " + t.facilitador
-                    + "\nParticipantes: ");
-            for (Persona_Participante p : t.participantes) {
-                System.out.println(" - " + p);
-            }
+            System.out.println("----TALLER----" + t
+                    + "\n\nFacilitador: " + t.facilitador
+                    + "\n\nParticipantes: " + t.participantes);
+
         }
     }
 }

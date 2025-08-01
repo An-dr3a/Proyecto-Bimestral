@@ -13,6 +13,8 @@ public class SistemaDeTalleresArtisticos {
                 "Danza", 10, "Preferible ropa deportiva", 8, 15);
         Sistema_Taller pintura = new Sistema_Taller("Taller pintura basica",
                 "Pintura", 20, "Ropa vieja", 5, 25);
+        gestionar.registrarTalleres(danza);
+        gestionar.registrarTalleres(pintura);
 
         Persona_Facilitador facilitador1 = new Persona_Facilitador("Andres", "1112383", 36, "Danza");
         Persona_Facilitador facilitador2 = new Persona_Facilitador("Sofia", "1112385", 27, "Pintura");
@@ -25,5 +27,8 @@ public class SistemaDeTalleresArtisticos {
         gestionar.inscribirParticipantes("Pintura", participante2);
 
         gestionar.reporteFinal();
+        gestionar.guardarDatosDeTalleresCSV("talleres.csv");
+        gestionar.guardarDatosDeFacilitadoresCSV("facilitadores.csv");
+        gestionar.guardarDatosDeParticipantesCSV("participantes.csv");
     }
 }

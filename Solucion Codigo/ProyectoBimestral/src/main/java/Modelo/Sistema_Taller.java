@@ -23,7 +23,7 @@ public class Sistema_Taller {
         this.participantes = new ArrayList<>();
     }
 
-    public boolean aregrarParticipante(Persona_Participante par) {
+    public boolean agregrarParticipante(Persona_Participante par) {
         if (participantes.size() < cupoMaximo) {
             participantes.add(par);
             return true;
@@ -35,13 +35,24 @@ public class Sistema_Taller {
         this.facilitador = fac;
     }
 
+    public String crearArchivoCSV() {
+
+        return String.format("%s;%s;%.2f;%s;%d;%d;%s",
+                nombre, tipoTaller, duracion, materiales, nivelDificultad, cupoMaximo, facilitador.cedula);
+    }
+
     @Override
     public String toString() {
-        return "Sistema_Taller{" + "nombre=" + nombre + ", tipoTaller="
-                + tipoTaller + ", duracion=" + duracion + ", materiales="
-                + materiales + ", nivelDificultad=" + nivelDificultad + ", cupoMaximo="
-                + cupoMaximo + ", facilitador=" + facilitador + ", participantes="
-                + participantes + '}';
+        return "\nNombre: " + nombre
+                + "\nTipo de Taller: " + tipoTaller
+                + "\nDuracion: " + duracion
+                + "\nMateriales: " + materiales
+                + "\nNivel de Dificultad: " + nivelDificultad
+                + "\nCupos Maximos: " + cupoMaximo
+                + "\nFacilitador: " + (facilitador != null ? facilitador.nombre
+                        + facilitador.especialidad : "No existe facilitador")
+                + "\nParticipantes: " + participantes;
+
     }
 
 }
